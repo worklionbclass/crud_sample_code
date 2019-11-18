@@ -1,0 +1,21 @@
+<% if user_signed_in? %>
+  <%= current_user.email %>님 안녕하세요!!
+  <a href="/home/mypage">마이페이지 가기</a>
+  <a href="/users/sign_out" data-method="delete">로그아웃하기</a>
+<% else %>
+  <a href="/users/sign_in">로그인하기</a>
+<% end %>
+<hr>
+
+<a href="/boards/new">새 글 쓰기</a>
+
+<br>
+
+<% @boards.each do |board| %>
+  <%= board.title %>
+  <%= board.content %>
+  <a href="/boards/<%= board.id %>">보기</a>
+  <a href="/boards/<%= board.id %>/edit">수정하기</a>
+  <a href="/boards/<%= board.id %>" data-method="delete">삭제하기</a>
+  <hr>
+<% end %>

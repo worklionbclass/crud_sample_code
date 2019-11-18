@@ -1,0 +1,23 @@
+제목 : <%= @board.title %>
+<br>
+내용 : <%= @board.content %>
+
+<hr>
+<form action="/boards/<%= @board.id %>/comments" method="post" data-remote="true">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  댓글 내용 : <input type="text" name="body" id="comment_body">
+  <button type="submit">제출</button>
+</form>
+
+<br>
+<div id="comment_lists">
+  <% @board.comments.each do |comment| %>
+    작성자 : <%= comment.user.email %> 내용 : <%= comment.body %>
+    <a href="/comments/<%= comment.id %>" data-method="delete">삭제</a>
+    <hr>
+  <% end %>
+</div>
+
+
+<br>
+<a href="/">목록페이지로 가기</a>

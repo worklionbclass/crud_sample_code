@@ -1,0 +1,7 @@
+$("#comment_body").val("")
+
+$("#comment_lists").append(`
+  작성자 : <%= @comment.user.email %> 내용 : <%= @comment.body %>
+  <a href="/comments/<%= @comment.id %>" data-method="delete">삭제</a>
+  <hr>
+`)
